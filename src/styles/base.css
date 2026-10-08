@@ -1,0 +1,165 @@
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, p, figure { margin: 0; }
+img, svg, video, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+/* Safe-area awareness for notches / gesture bars */
+body {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: var(--space-2);
+  z-index: 1000;
+  background: var(--color-fg);
+  color: var(--color-bg);
+  padding: var(--space-1) var(--space-2);
+  border-radius: 4px;
+  transition: top var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus { top: var(--space-2); }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* === Typography === */
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-fg-dim);
+}
+
+.display-xl {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-xl);
+  line-height: var(--lh-tight);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.display-lg {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-lg);
+  line-height: var(--lh-tight);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.display-md {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-md);
+  line-height: var(--lh-tight);
+  font-weight: 500;
+}
+.body-lg {
+  font-size: var(--fs-body-lg);
+  color: var(--color-fg-dim);
+  max-width: 42ch;
+}
+
+/* === Layout === */
+.scene {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-6) var(--gutter);
+  border-bottom: 1px solid var(--color-border);
+}
+.scene__inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  width: 100%;
+}
+.scene__eyebrow { margin-bottom: var(--space-3); }
+.scene__title { margin-bottom: var(--space-3); }
+.scene__body { margin-top: var(--space-3); }
+
+.stack-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  list-style: none;
+  padding: 0;
+  margin: var(--space-3) 0 0;
+}
+.stack-list li {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--color-fg-dim);
+}
+
+.project-list { list-style: none; padding: 0; margin: var(--space-4) 0 0; }
+.project-list li {
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: 4ch 1fr;
+  gap: var(--space-2);
+}
+.project-list li:last-child { border-bottom: 1px solid var(--color-border); }
+.project-list .index { font-family: var(--font-mono); color: var(--color-fg-faint); }
+.project-list h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 500; }
+.project-list .kind { display: block; font-size: 0.85rem; color: var(--color-fg-faint); margin-top: 2px; }
+.project-list p { color: var(--color-fg-dim); margin-top: var(--space-1); max-width: 55ch; }
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.btn:hover, .btn:focus-visible { border-color: var(--color-accent); color: var(--color-accent); }
+
+footer.site-footer {
+  padding: var(--space-4) var(--gutter);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-fg-faint);
+  text-align: center;
+}
+
+/* === Reduced motion: handled fully, enhancements layer on top === */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

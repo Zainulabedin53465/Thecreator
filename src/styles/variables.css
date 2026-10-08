@@ -1,0 +1,50 @@
+:root {
+  /* === Color: dark, desaturated, single accent. No neon, no gradients soup. === */
+  --color-bg: #08080a;
+  --color-bg-elevated: #0e0e12;
+  --color-bg-panel: #131318;
+  --color-fg: #f1efe9;
+  --color-fg-dim: #8c8c95;
+  --color-fg-faint: #55555d;
+  --color-accent: #c9a876;       /* muted gold — used sparingly: links, focus, active states */
+  --color-border: #1f1f26;
+
+  /* === Type === */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --fs-display-xl: clamp(2.75rem, 9vw, 8rem);
+  --fs-display-lg: clamp(2rem, 6vw, 4.5rem);
+  --fs-display-md: clamp(1.5rem, 4vw, 2.5rem);
+  --fs-body-lg: clamp(1.05rem, 1.6vw, 1.35rem);
+  --fs-body: 1rem;
+  --fs-label: 0.8rem;
+
+  --lh-tight: 1.05;
+  --lh-normal: 1.6;
+  --ls-wide: 0.14em;
+
+  /* === Spacing === */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 7rem;
+  --space-7: 11rem;
+
+  /* === Motion === */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.25s;
+  --dur-med: 0.6s;
+  --dur-slow: 1.2s;
+
+  /* === Layout === */
+  --nav-height: 72px;
+  --content-max: 1400px;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+
+  color-scheme: dark;
+}

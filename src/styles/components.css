@@ -1,0 +1,138 @@
+/* === Preloader === */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  transition: opacity var(--dur-slow) var(--ease-in-out), visibility var(--dur-slow);
+}
+.preloader[data-done="true"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader__line {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-fg-dim);
+  min-height: 1.2em;
+}
+.preloader__bar {
+  width: min(220px, 50vw);
+  height: 1px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+.preloader__bar::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: var(--progress, 0%);
+  background: var(--color-accent);
+  transition: width var(--dur-med) var(--ease-out);
+}
+
+/* === Nav === */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  padding-top: env(safe-area-inset-top, 0px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--gutter);
+  mix-blend-mode: difference;
+}
+.site-nav__name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+.site-nav__toggle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: var(--color-bg-elevated);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-med) var(--ease-out), visibility var(--dur-med);
+}
+.menu-overlay[data-open="true"] { opacity: 1; visibility: visible; }
+.menu-overlay__list {
+  list-style: none;
+  padding: 0; margin: 0;
+  text-align: center;
+}
+.menu-overlay__list li { margin: var(--space-2) 0; }
+.menu-overlay__list a {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: 500;
+  color: var(--color-fg-dim);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.menu-overlay__list a:hover,
+.menu-overlay__list a:focus-visible,
+.menu-overlay__list a[aria-current="true"] { color: var(--color-fg); }
+
+@media (max-width: 480px) {
+  .scene { padding-block: var(--space-5); }
+}
+
+/* === WebGL canvas: fixed behind all content, never blocks clicks/scroll === */
+#webgl {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* === Custom cursor: desktop (fine pointer) only === */
+@media (pointer: fine) {
+  body.has-custom-cursor { cursor: none; }
+  body.has-custom-cursor a,
+  body.has-custom-cursor button { cursor: none; }
+}
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 200;
+  border-radius: 50%;
+  transform: translate(-100px, -100px);
+}
+.cursor-dot {
+  width: 6px; height: 6px;
+  margin: -3px;
+  background: var(--color-fg);
+}
+.cursor-ring {
+  width: 32px; height: 32px;
+  margin: -16px;
+  border: 1px solid var(--color-fg-dim);
+  transition: width var(--dur-fast) var(--ease-out), height var(--dur-fast) var(--ease-out),
+              margin var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+body.cursor-active .cursor-ring {
+  width: 54px; height: 54px; margin: -27px;
+  border-color: var(--color-accent);
+}

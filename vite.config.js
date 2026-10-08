@@ -1,10 +1,13 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  base: '/Thecreator/',
+
   server: {
-    host: true,   // exposes a LAN URL so you can test on your real phone
+    host: true,
     port: 5173,
   },
+
   build: {
     target: 'es2020',
     chunkSizeWarningLimit: 800,
